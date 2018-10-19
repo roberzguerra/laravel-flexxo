@@ -1,3 +1,40 @@
+# Instruções para iniciar
+
+## No windows com Xampp
+* Para instalar o Composer:
+https://getcomposer.org/download/
+* Para instalar o Laravel via composer siga a documentação do laravel:
+https://laravel.com/docs/5.7
+
+* $ /c/xampp/php/php.exe composer.phar global require "laravel/installer"
+
+* Crie o projeto test_laravel (como um diretório) através dos comandos abaixo:
+* $ /c/xampp/php/php.exe composer.phar create-project --prefer-dist laravel/laravel test_laravel
+* **OBS:** test_laravel é o nome do nosso projeto que também será o nome do diretório.
+
+* **OBS:**
+Caso ocorra algum erro similar a este: SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`))
+
+* **Correção:**
+Para resolver isso siga os passos abaixo:
+Edite o arquivo app\Providers\AppServiceProvider.php
+Adicione o namespace use Illuminate\Support\Facades\Schema;
+Dentro do método boot adicione Schema::defaultStringLength(191);
+Resultado final do arquivo:
+use Illuminate\Support\Facades\Schema; public function boot() { Schema::defaultStringLength(191); }
+Para mais informações consultar documentação: https://laravel.com/docs/5.5/migrations
+
+* Após realizar o pull, rode o composer install e composer update:
+```sh
+$ /c/xampp/php/php.exe composer.phar install
+```
+```sh
+$ /c/xampp/php/php.exe composer.phar update
+```
+<br>
+<br>
+<br>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
